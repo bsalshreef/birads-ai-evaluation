@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this software in your research, please cite it using these metadata."
+title: "BI-RADS Anchored Evaluation of Artificial Intelligence for Breast Cancer Screening in Digital Mammography: A Clinical Utility Framework Beyond AUC"
+authors:
+  - family-names: "[Insert Author Last Name]"
+    given-names: "[Insert Author First Name]"
+    orcid: "https://orcid.org/[Insert ORCID]"
+    affiliation: "[Insert Affiliation]"
+repository-code: "https://github.com/[username]/birads-ai-evaluation"
+url: "https://github.com/[username]/birads-ai-evaluation"
+doi: "10.5281/zenodo.XXXXXX"
+date-released: 2026-06-24
+version: "1.0.0"
+license: "MIT"
+keywords:
+  - "breast cancer screening"
+  - "digital mammography"
+  - "artificial intelligence"
+  - "BI-RADS"
+  - "clinical utility"
+  - "decision curve analysis"
+  - "calibration"
+  - "reproducibility"
+type: "software"
+abstract: >
+  This repository provides a reproducible implementation of a BI-RADS-anchored
+  clinical utility framework for evaluating AI models in breast cancer screening.
+  The framework moves beyond AUC to assess discrimination, calibration,
+  workload-anchored performance, decision curve analysis, and subgroup equity.
