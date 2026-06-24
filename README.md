@@ -80,7 +80,7 @@ If you use this framework or code in your research, please cite our paper:
 
 ```bibtex
 @article{author_birads_2026,
-  author = {[Insert Author Name]},
+  author = {Bandar Saad Alshreef},
   title = {BI-RADS Anchored Evaluation of Artificial Intelligence for Breast Cancer Screening in Digital Mammography: A Clinical Utility Framework Beyond AUC},
   journal = {European Radiology Experimental},
   year = {2026},

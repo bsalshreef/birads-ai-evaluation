@@ -1,7 +1,7 @@
 # BI-RADS Anchored Evaluation of Artificial Intelligence for Breast Cancer Screening in Digital Mammography: A Clinical Utility Framework Beyond AUC
 
-**Author:** [Insert Author Name], Ph.D.
-**Affiliation:** [Insert Affiliation]
+**Author:** Bandar Saad Alshreef, Ph.D.
+**Affiliation:** Shaqra University
 **Corresponding author:** [Insert Email], ORCID: [Insert ORCID]
 **Target journal:** European Radiology Experimental
 **Manuscript type:** Original Research
@@ -14,9 +14,9 @@
 
 **Running title:** BI-RADS-Anchored Clinical Utility Assessment of Mammography AI
 
-**Author list:** [Insert Author Name]
+**Author list:** Bandar Saad Alshreef
 
-**Affiliations:** [Insert Affiliation]
+**Affiliations:** Shaqra University
 
 **Word count:** 4,200
 **Number of tables:** 8

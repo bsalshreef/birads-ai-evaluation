@@ -2,15 +2,13 @@ cff-version: 1.2.0
 message: "If you use this software in your research, please cite it using these metadata."
 title: "BI-RADS Anchored Evaluation of Artificial Intelligence for Breast Cancer Screening in Digital Mammography: A Clinical Utility Framework Beyond AUC"
 authors:
-  - family-names: "[Insert Author Last Name]"
-    given-names: "[Insert Author First Name]"
-    orcid: "https://orcid.org/[Insert ORCID]"
-    affiliation: "[Insert Affiliation]"
-repository-code: "https://github.com/[username]/birads-ai-evaluation"
-url: "https://github.com/[username]/birads-ai-evaluation"
-doi: "10.5281/zenodo.XXXXXX"
-date-released: 2026-06-24
-version: "1.0.0"
+  - family-names: "Alshreef"
+    given-names: "Bandar Saad"
+    affiliation: "Shaqra University"
+repository-code: "https://github.com/bsalshreef/birads-ai-evaluation"
+url: "https://github.com/bsalshreef/birads-ai-evaluation"
+date-released: "2026-06-24"
+version: "1.0.2"
 license: "MIT"
 keywords:
   - "breast cancer screening"
