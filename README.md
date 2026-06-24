@@ -1,6 +1,6 @@
 # BI-RADS Anchored AI Evaluation Framework
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXX)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20821730.svg)](https://doi.org/10.5281/zenodo.20821730)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 
@@ -84,7 +84,7 @@ If you use this framework or code in your research, please cite our paper:
   title = {BI-RADS Anchored Evaluation of Artificial Intelligence for Breast Cancer Screening in Digital Mammography: A Clinical Utility Framework Beyond AUC},
   journal = {European Radiology Experimental},
   year = {2026},
-  doi = {10.5281/zenodo.XXXXXX},
+  doi = {10.5281/zenodo.20821730},
   url = {https://github.com/[username]/birads-ai-evaluation}
 }
 ```

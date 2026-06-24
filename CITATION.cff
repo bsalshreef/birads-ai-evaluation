@@ -9,6 +9,7 @@ repository-code: "https://github.com/bsalshreef/birads-ai-evaluation"
 url: "https://github.com/bsalshreef/birads-ai-evaluation"
 date-released: "2026-06-24"
 version: "1.0.2"
+doi: "10.5281/zenodo.20821730"
 license: "MIT"
 keywords:
   - "breast cancer screening"
