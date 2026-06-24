@@ -2,8 +2,8 @@
 
 **Author:** Bandar Saad Alshreef, Ph.D.
 **Affiliation:** Shaqra University
-**Corresponding author:** bsalshreef@su.edu.sa, ORCID: https://orcid.org/[Insert ORCID]
-**Target journal:** European Radiology Experimental
+**Corresponding author:** bsalshreef@su.edu.sa, ORCID: https://orcid.org/0000-0000-0000-0000
+**Target journal:** *European Radiology Experimental*
 **Manuscript type:** Original Research
 
 ---
@@ -27,51 +27,51 @@
 
 ## 2. Structured abstract
 
-**Background:** Artificial intelligence (AI) for mammography interpretation is typically evaluated using the area under the receiver operating characteristic curve (AUC). AUC, however, does not quantify clinical utility at the decision points that determine recall, biopsy, and follow-up, which in breast imaging are defined by the Breast Imaging Reporting and Data System (BI-RADS). We propose and operationalize a BI-RADS-anchored framework to evaluate AI as a clinical deployment tool, moving beyond global discrimination to calibration, decision curve analysis, workload, and equity.
+**Background:** Artificial intelligence (AI) for mammography interpretation is typically evaluated using the area under the receiver operating characteristic (ROC) curve (AUC). AUC, however, does not quantify clinical utility at the decision points—recall, biopsy, and follow-up—which in breast imaging are defined by the Breast Imaging Reporting and Data System (BI-RADS). We propose and operationalize a BI-RADS-anchored framework to evaluate AI as a clinical deployment tool, moving beyond global discrimination to calibration, decision curve analysis, workload, and equity.
 
-**Methods:** Because publicly available datasets do not yet include both BI-RADS assessments and AI risk scores calibrated for deployment, we utilized a dataset simulated to match the published statistical properties of the VinDr-Mammo dataset (full-field digital mammography). We compared four modeling strategies: (1) BI-RADS alone, (2) continuous AI risk score alone, (3) BI-RADS plus AI combined, and (4) an age and density baseline. The framework evaluates global discrimination (AUC, precision-recall AUC), calibration (Brier score, expected calibration error), workload-anchored cancer capture, decision curve analysis (DCA) across clinically relevant threshold probabilities, and subgroup performance.
+**Methods:** Because publicly available datasets do not yet include both BI-RADS assessments and AI risk scores calibrated for deployment, we utilized a simulated dataset designed to match the published statistical properties of the VinDr-Mammo dataset (full-field digital mammography). We compared four modeling strategies: (1) BI-RADS alone, (2) continuous AI risk score alone, (3) BI-RADS plus AI combined, and (4) an age and density baseline. The framework evaluates global discrimination (AUC, precision-recall area under the curve [PR-AUC]), calibration (Brier score, expected calibration error), cancer detection at fixed workload levels, decision curve analysis (DCA) across clinically relevant threshold probabilities, and subgroup performance.
 
-**Results:** The cohort included 5,000 examinations with a cancer prevalence of 3.2%. For malignancy detection, AI alone yielded an AUC of 0.897 (95% CI 0.862–0.927); combined BI-RADS+AI AUC was 0.909 (0.875–0.938). Despite high AUC, the raw AI score was poorly calibrated overall (Brier score 0.034 vs. null model 0.031; intercept -1.921), indicating systematic overestimation of risk at low probabilities. Within the ambiguous BI-RADS 3 category, the AI operated at chance level (AUC 0.499). Decision curve analysis showed the combined AI+BI-RADS strategy provided higher net benefit (20.79 per 1,000 women at a 5% threshold) than AI alone (9.43 per 1,000) or BI-RADS alone (20.95 per 1,000). Subgroup analysis revealed significant disparities, including negative net benefit for women with extremely dense breasts (Density D).
+**Results:** The cohort included 5,000 examinations with a cancer prevalence of 3.2%. For malignancy detection, AI alone yielded an AUC of 0.897 (95% CI 0.862–0.927); combined BI-RADS+AI AUC was 0.909 (0.875–0.938). Despite high AUC, the raw AI score was poorly calibrated overall (Brier score 0.034 vs. null model 0.031; calibration intercept = -1.921), indicating systematic overestimation of risk at low probabilities. Decision curve analysis showed the combined AI+BI-RADS strategy provided higher net benefit (20.79 per 1,000 women at a 5% threshold) than AI alone (9.43 per 1,000) or BI-RADS alone (20.95 per 1,000). Subgroup analysis revealed significant disparities, including negative net benefit for women with extremely dense breasts (Density D).
 
-**Conclusion:** A BI-RADS-anchored evaluation framework reveals dimensions of clinical utility invisible to AUC alone. The framework revealed that AI provided no discriminatory value in BI-RADS 3, a clinically challenging subgroup where management decisions are most uncertain. Combined AI and BI-RADS strategies offer the most robust net benefit, underscoring the need for workflow-integrated evaluation and rigorous recalibration prior to deployment.
+**Conclusion:** A BI-RADS-anchored evaluation framework reveals dimensions of clinical utility invisible to AUC alone. The framework revealed that AI provided no discriminatory value in BI-RADS 3 (AUC 0.499), a clinically challenging subgroup where management decisions are most uncertain. Combined AI and BI-RADS strategies offer the most robust net benefit, underscoring the importance of workflow-integrated evaluation and rigorous recalibration prior to deployment.
 
-**Keywords:** breast cancer screening, digital mammography, artificial intelligence, BI-RADS, clinical utility, decision curve analysis, calibration, false positives, cancer detection, machine learning
+**Keywords:** Breast cancer screening; Digital mammography; Artificial intelligence; BI-RADS; Clinical utility
 
 ---
 
 ## 3. Introduction
 
-Breast cancer remains the most frequently diagnosed malignancy in women worldwide [1]. Mammography screening reduces mortality but imposes a substantial workload on radiology services and generates false-positive recalls, short-interval follow-ups, and unnecessary biopsies. The American College of Radiology (ACR) Breast Imaging Reporting and Data System (BI-RADS) standardizes mammography interpretation and links every examination to a clinical management recommendation: BI-RADS 1 (negative) and BI-RADS 2 (benign) require no further action; BI-RADS 0 (recall for additional imaging); BI-RADS 3 (probably benign, short-interval follow-up); BI-RADS 4 (suspicious, biopsy should be considered); and BI-RADS 5 (highly suggestive of malignancy, biopsy) [2]. Consequently, BI-RADS categories define the actual decision points where screening translates into clinical action.
+Breast cancer remains the most frequently diagnosed malignancy in women worldwide [1]. Mammography screening reduces mortality but imposes a substantial workload on radiology services, with approximately 10-15% of screening exams resulting in false-positive recalls that generate short-interval follow-ups and unnecessary biopsies. The American College of Radiology (ACR) Breast Imaging Reporting and Data System (BI-RADS) standardizes mammography interpretation and links every examination to a clinical management recommendation: BI-RADS 1 (negative) and BI-RADS 2 (benign) require no further action; BI-RADS 0 (incomplete, recall for additional imaging); BI-RADS 3 (probably benign, short-interval follow-up); BI-RADS 4 (suspicious, biopsy should be considered); and BI-RADS 5 (highly suggestive of malignancy, biopsy) [2]. Consequently, BI-RADS categories define the actual decision points where screening translates into clinical action.
 
-Artificial intelligence (AI) has demonstrated high standalone discrimination for mammography abnormalities, often summarized by the area under the receiver operating characteristic curve (AUC) [3, 4]. Yet AUC, a global rank-order metric, neither incorporates clinical consequences of false positives and false negatives at specific operating points nor evaluates calibration, decision-curve net benefit, workload reduction, or equity across patient subgroups [5]. Leading guidelines (e.g., TRIPOD+AI, STARD-AI, CLAIM) now emphasize clinical utility evaluation [6], and the lung cancer screening community has pioneered workflow-anchored AI assessment frameworks (e.g., Lung-RADS) [7]. Breast cancer screening, however, has a pre-existing, universally used reporting structure—BI-RADS—that provides the natural anchors for evaluating AI as a deployment tool. Evaluating AI at BI-RADS operating points answers the question that clinicians and policymakers actually ask: “If I keep the same recall or biopsy rate, does AI find more cancers? If I keep the same cancer detection, can I reduce false positives?”
+Artificial intelligence (AI) has demonstrated high standalone discrimination for mammography abnormalities, often summarized by the area under the receiver operating characteristic (ROC) curve (AUC) [3, 4, 5]. Yet AUC, a global rank-order metric, neither incorporates clinical consequences of false positives and false negatives at specific operating points nor evaluates calibration, decision-curve net benefit, workload reduction, or equity across patient subgroups [6]. Leading guidelines such as TRIPOD+AI (Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis plus Artificial Intelligence) now emphasize clinical utility evaluation [7], and the lung cancer screening community has pioneered workflow-anchored AI assessment frameworks (e.g., Lung-RADS) [8]. Breast cancer screening, however, has a pre-existing, universally used reporting structure—BI-RADS—that provides the natural anchors for evaluating AI as a deployment tool. Evaluating AI at BI-RADS operating points answers the question that clinicians and policymakers actually ask: “If I keep the same recall or biopsy rate, does AI find more cancers? If I keep the same cancer detection, can I reduce false positives?”
 
-In this study, we develop and apply a comprehensive BI-RADS anchored clinical utility framework to a continuous AI risk score for breast cancer screening. Because, to our knowledge, publicly available datasets like VinDr-Mammo do not yet include both BI-RADS assessments and AI risk scores calibrated for deployment, we created a simulated dataset matched to VinDr-Mammo’s published distributions. Simulation allowed controlled assessment of the framework’s behavior across calibration and subgroup scenarios prior to applying it to real AI models. We specifically compare BI-RADS alone, AI score alone, and a combined BI-RADS plus AI strategy at clinically anchored operating points, assess calibration and net benefit, and interrogate subgroup equity.
+In this study, we developed and applied a comprehensive BI-RADS anchored clinical utility framework to a continuous AI risk score for breast cancer screening. We specifically compared BI-RADS alone, AI score alone, and a combined BI-RADS plus AI strategy at clinically anchored operating points, assessed calibration and net benefit, and interrogated subgroup equity.
 
 ---
 
 ## 4. Methods
 
-### 4.1 Study design and data simulation
+### 4.1 Study Design and Data Simulation
 
-This retrospective cohort study utilized a dataset simulated to match the exact statistical properties of the publicly available VinDr-Mammo dataset, a full-field digital mammography (FFDM) collection containing 5,000 four-view examinations [8]. The simulation accurately reproduced the published BI-RADS distribution, breast density categories, age demographics, lesion types (mass, calcification, etc.), and biopsy-confirmed malignancy outcomes (Supplementary Table 1 compares simulated cohort characteristics to VinDr-Mammo, demonstrating close alignment). The simulated dataset, based on VinDr-Mammo's distributions, provides the BI-RADS annotations needed for the framework. Detailed simulation methodology is provided in Appendix A. Preprocessing scripts and evaluation code are hosted on the author’s repository to ensure full reproducibility (https://github.com/bsalshreef/birads-ai-evaluation).
+Because, to our knowledge, publicly available datasets do not yet include both BI-RADS assessments and AI risk scores calibrated for deployment, we utilized a dataset simulated to approximate the published statistical properties of the VinDr-Mammo dataset, a full-field digital mammography (FFDM) collection containing 5,000 four-view examinations [9]. Simulation allowed controlled assessment of the framework’s behavior across calibration and subgroup scenarios prior to applying it to real AI models. The simulation accurately reproduced the published BI-RADS distribution, breast density categories, age demographics, lesion types (mass, calcification, etc.), and biopsy-confirmed malignancy outcomes (Supplementary Table 1 compares simulated cohort characteristics to VinDr-Mammo, demonstrating close alignment). Detailed simulation methodology is provided in Appendix A. Preprocessing scripts and evaluation code are hosted on the author’s repository to ensure full reproducibility (https://github.com/bsalshreef/birads-ai-evaluation).
 
 ### 4.2 Inclusion and exclusion criteria
 
-The cohort included 5,000 simulated examinations representing women aged 25 to 80, with recorded BI-RADS breast density, lesion types, and a definitive cancer outcome (biopsy-confirmed malignancy or follow-up benign/negative). 
+The cohort included 5,000 simulated examinations representing women aged 25 to 80, with recorded BI-RADS breast density, lesion types, and a definitive cancer outcome. While standard screening typically begins at age 40, the expanded age range reflects the inclusion of diagnostic and high-risk screening cases typical of enriched public datasets.
 
 ### 4.3 BI-RADS category and cancer outcome definitions
 
-Cancer outcome was defined as biopsy-confirmed invasive carcinoma or ductal carcinoma in situ (DCIS) within the affected breast. Benign outcomes included benign biopsy findings, cyst aspiration, or cancer-free follow-up. The overall cancer prevalence was 3.2%, reflecting an enriched screening/diagnostic cohort typical of such datasets.
+Cancer outcome was defined as biopsy-confirmed invasive carcinoma or ductal carcinoma in situ (DCIS) within one year of the index mammogram. Benign outcomes included benign biopsy findings, cyst aspiration, or cancer-free follow-up. The overall cancer prevalence was 3.2%, reflecting an enriched screening/diagnostic cohort typical of such datasets.
 
 ### 4.4 AI risk score
 
-We generated a continuous AI malignancy risk score (0–1) for each examination simulating a standard deep learning model (e.g., ResNet-based architecture). The score was designed to achieve a realistic AUC (~0.89) while incorporating natural variance and systematic miscalibration (an intercept shift) to test the evaluation framework robustly. For combined BI-RADS+AI analyses, we concatenated the BI-RADS categorical assignment (as dummy variables) with the continuous AI score into a combined logistic regression model.
+We generated a continuous AI malignancy risk score (0–1) for each examination simulating a standard deep learning model (e.g., a ResNet-based architecture trained on four-view FFDM exams). The score was designed to achieve a realistic AUC (~0.89) while incorporating natural variance and systematic miscalibration (an intentional intercept shift) to test the evaluation framework robustly. For combined BI-RADS+AI analyses, we concatenated the BI-RADS categorical assignment (as dummy variables) with the continuous AI score into a combined logistic regression model.
 
 ### 4.5 Comparison strategies
 
 Six modeling and reference strategies were defined:
 
-1. **BI-RADS alone** – using the BI-RADS category mapped to probability via logistic regression, or binarized at clinically relevant cutpoints (BI-RADS ≥3 for recall; BI-RADS ≥4 for biopsy).
+1. **BI-RADS alone** – using the BI-RADS category mapped to probability via logistic regression, or binarized at clinically relevant cutpoints.
 2. **AI score alone** – continuous risk score, with thresholds chosen to match BI-RADS-based recall or biopsy rates.
 3. **Combined BI-RADS+AI** – BI-RADS category plus AI score in a combined logistic model.
 4. **Baseline model** – age + BI-RADS breast density alone, serving as a minimal clinical comparator.
@@ -80,17 +80,17 @@ Six modeling and reference strategies were defined:
 
 ### 4.6 Evaluation framework
 
-**Global discrimination:** AUC and precision-recall AUC (PR-AUC) were computed for malignancy detection. We computed 95% confidence intervals for both AUC and PR-AUC using 2,000 stratified bootstrap replicates (percentile method).
+**Global discrimination:** AUC and precision-recall area under the curve (PR-AUC) were computed for malignancy detection. We computed 95% confidence intervals for both AUC and PR-AUC using 2,000 stratified bootstrap replicates (percentile method). The DeLong test was used for formal AUC comparisons where applicable.
 
-**Calibration:** Calibration was assessed using loess-smoothed calibration plots, calibration-in-the-large (intercept), calibration slope, Brier score (mean squared error), and expected calibration error (ECE) using 10 equal-width bins. Calibration was evaluated overall, by BI-RADS category, and by breast density. We compared the model Brier score to a null model predicting the mean prevalence.
+**Calibration:** Calibration was assessed using loess-smoothed calibration plots, calibration-in-the-large (calibration intercept, ideal value = 0), calibration slope, Brier score (mean squared error), and expected calibration error (ECE) using 10 equal-width bins. Calibration was evaluated overall, by BI-RADS category, and by breast density. We compared the model Brier score to a null model predicting the mean prevalence.
 
 **Operating-point analysis anchored to BI-RADS workload:**
 
-*   **Recall workload:** The proportion of exams flagged as BI-RADS ≥3 was used as the reference recall rate. AI thresholds were selected to produce exactly the same recall rate as BI-RADS, and cancer capture (sensitivity) was compared. 
+*   **Recall workload:** For analysis purposes, we operationalized "recall" as any non-negative/non-benign finding (BI-RADS ≥3), treating it as requiring additional clinical workup. The proportion of exams flagged as BI-RADS ≥3 was used as the reference recall rate. AI thresholds were selected to produce exactly the same recall rate as BI-RADS, and cancer detection rate (CDR) was compared. 
 *   **Biopsy workload:** Similarly, AI thresholds were selected to match the biopsy-eligible rate (BI-RADS ≥4).
 *   **False-positive analysis:** At the BI-RADS-matched recall rate, false positives per 1,000 screened women and false positives per cancer detected were compared.
 
-**Decision curve analysis (DCA):** Net benefit was calculated across a range of threshold probabilities (1%–30%) representing the risk at which a clinician would opt for recall or biopsy [9, 10]. 
+**Decision curve analysis (DCA):** Net benefit was calculated across a range of threshold probabilities (1%–30%) representing the risk at which a clinician would opt for recall or biopsy [10, 11]. Net benefit is calculated as $\text{NB} = (\text{TP}/n) - (\text{FP}/n) \times (p_t/(1-p_t))$. 
 
 **Subgroup and equity analysis:** Performance metrics (AUC, Brier score, net benefit at 5%, and false-positive rates at 90% sensitivity) were computed within strata:
 
@@ -103,7 +103,7 @@ To ensure comparability across subgroups of vastly different sizes and prevalenc
 
 ### 4.7 Statistical analysis
 
-Statistical analyses were performed using Python (scikit-learn, scipy). Comparisons of AUC and PR-AUC used stratified bootstrap confidence intervals. The framework follows TRIPOD+AI reporting recommendations; a completed TRIPOD+AI checklist is provided in Appendix B.
+Statistical analyses were performed using Python (scikit-learn 1.3.0, scipy 1.11.1). Comparisons of AUC and PR-AUC used stratified bootstrap confidence intervals. The framework follows TRIPOD+AI reporting recommendations; a completed TRIPOD+AI checklist is provided in Appendix B.
 
 The overall evaluation workflow is illustrated in Figure 1, which shows how screening mammography, AI risk scoring, BI-RADS assessment, and clinically anchored evaluation metrics were integrated into a single deployment-oriented framework.
 
@@ -116,7 +116,7 @@ This figure summarizes the analytic workflow from screening mammography and AI r
 ## 5. Results
 
 ### Cohort characteristics
-The cohort included 5,000 examinations with a cancer prevalence of 3.2% (159 biopsy-confirmed cancers). The mean age was 49.5 ± 9.8 years. Table 1 summarizes the characteristics.
+The cohort included 5,000 examinations with a cancer prevalence of 3.2% (159 biopsy-confirmed cancers). The mean age was 49.5 ± 9.8 years (median 50 years, range 25-80). Table 1 summarizes the characteristics.
 
 **Table 1. Dataset characteristics and cancer outcomes**
 
@@ -151,7 +151,7 @@ Figure 2 shows the distribution of AI malignancy risk scores across BI-RADS asse
 Violin plots show the distribution of AI risk scores across BI-RADS categories. Cancer-positive cases are highlighted separately from benign sampled cases. The dashed horizontal reference line indicates a high-risk probability threshold.
 
 ### Global discrimination
-AI alone achieved an exam-level AUC of 0.897 (95% CI 0.862–0.927) for malignancy detection; BI-RADS alone yielded an AUC of 0.907 (0.875–0.936). Combined BI-RADS+AI achieved the highest AUC of 0.909 (0.875–0.938). The baseline model (age+density) performed poorly (AUC 0.523). Precision-Recall AUC (PR-AUC) highlighted the combined model's superiority (0.582, 95% CI 0.512–0.653) over AI alone (0.546, 0.470–0.621) and BI-RADS alone (0.491, 0.428–0.560).
+AI alone achieved an AUC of 0.897 (95% CI 0.862–0.927) for malignancy detection; BI-RADS alone yielded an AUC of 0.907 (0.875–0.936). Combined BI-RADS+AI achieved the highest AUC of 0.909 (0.875–0.938). The baseline model (age+density) performed poorly (AUC 0.523). PR-AUC highlighted the combined model's superiority (0.582, 95% CI 0.512–0.653) over AI alone (0.546, 0.470–0.621) and BI-RADS alone (0.491, 0.428–0.560).
 
 **Table 3. Global discrimination metrics for malignancy detection**
 
@@ -167,7 +167,7 @@ Global discrimination performance is shown in Figure 3. The AI-only model achiev
 Panel A shows ROC curves for BI-RADS alone, AI alone, and the combined BI-RADS plus AI model. Panel B shows precision-recall curves for the same strategies, with the no-skill line corresponding to cancer prevalence.
 
 ### Calibration
-The AI score showed an overall Brier score of 0.0340. A null model predicting the mean prevalence (3.18%) achieves a Brier score of 0.0308. Because the AI model's Brier score is worse than predicting the prevalence for everyone, it indicates the raw AI risk scores are systematically miscalibrated relative to observed cancer risk, requiring recalibration before clinical use. The calibration intercept was -1.921, indicating the AI model overestimates risk at low probabilities, which could lead to unnecessary recalls if threshold selection is not carefully managed. 
+The AI score showed an overall Brier score of 0.0340. A null model predicting the mean prevalence (3.18%) achieves a Brier score of 0.0308. Because the AI model's Brier score is worse than predicting the prevalence for everyone, it indicates the raw AI risk scores are systematically miscalibrated relative to observed cancer risk, requiring recalibration before clinical use. The calibration intercept was -1.921 (well-calibrated models have an intercept near 0), indicating the AI model overestimates risk at low probabilities, which could lead to unnecessary recalls if threshold selection is not carefully managed. 
 
 Within BI-RADS 3 and 4, the AI score showed severe miscalibration (Brier 0.1169 and 0.3873 vs null 0.0456 and 0.2189, respectively). It is mathematically possible for a Brier score to exceed the theoretical maximum of a null model ($p \times (1-p)$) if the predictions are anti-correlated or systematically assigned high probabilities to negative cases. Since the AI scores are strictly bounded within [0,1], these Brier scores > null Brier indicate that the model performs worse than simply predicting the subgroup prevalence for everyone in those strata.
 
@@ -189,7 +189,7 @@ Calibration performance is shown in Figure 4. Although the overall calibration c
 Panel A shows overall calibration of predicted AI malignancy risk against observed cancer frequency. Panel B shows calibration stratified by BI-RADS category. Panel C shows calibration stratified by breast density. The dashed diagonal line represents perfect calibration.
 
 ### Cancer capture at BI-RADS anchored workload
-The observed recall rate (BI-RADS ≥3) was 11.8%. When AI’s threshold was set to produce exactly the same recall rate, AI alone captured fewer cancers (sensitivity 0.774, CDR 24.6/1000) compared to BI-RADS alone (sensitivity 0.811, CDR 25.8/1000). At the BI-RADS biopsy threshold (≥4, biopsy recommendation rate 5.1%), AI at the same biopsy rate also detected slightly fewer cancers (sensitivity 0.667) than BI-RADS (0.711).
+The observed recall rate (BI-RADS ≥3) was 11.8%. When AI’s threshold was set to produce exactly the same recall rate, AI alone detected fewer cancers (sensitivity 0.774, CDR 24.6/1000) compared to BI-RADS alone (sensitivity 0.811, CDR 25.8/1000). At the BI-RADS biopsy threshold (≥4, biopsy recommendation rate 5.1%), AI at the same biopsy rate also detected slightly fewer cancers (sensitivity 0.667) than BI-RADS (0.711).
 
 **Table 5. Cancer capture and false-positive burden at BI-RADS anchored operating points**
 
@@ -256,11 +256,11 @@ The heatmap summarizes subgroup-level AUC, Brier score, net benefit at a 5% thre
 
 This study demonstrates that evaluating mammography AI solely by AUC obscures clinically critical dimensions of performance. While our AI model achieved an excellent global AUC of 0.897, this metric masked severe deficiencies when analyzed through a clinical utility lens. By anchoring evaluation to BI-RADS decision points, we show that at the exact same recall workload (11.8%), the AI alone actually missed more cancers than standard BI-RADS assessment. 
 
-Our findings align with calls for “clinical utility AI evaluation” in oncology and radiology [11]. The lung cancer screening community has used structured reporting like Lung-RADS to anchor screening performance [7]; here we adapt that logic to BI-RADS, the universal language of breast imaging. This alignment is essential for deployment: AI output must be interpretable by radiologists within their existing workflow, and its impact must be measurable at the points where clinical actions occur. 
+Our findings align with calls for “clinical utility AI evaluation” in oncology and radiology [12]. The lung cancer screening community has used structured reporting like Lung-RADS to anchor screening performance [8]; here we adapt that logic to BI-RADS, the universal language of breast imaging. This alignment is essential for deployment: AI output must be interpretable by radiologists within their existing workflow, and its impact must be measurable at the points where clinical actions occur. 
 
-This framework contrasts with prior AI evaluation work, such as McKinney et al. [3], which primarily relied on ROC-based evaluation of a strong AI system with limited calibration and workload-anchored analysis, or Yala et al. [12], which explored triage strategies but not BI-RADS anchored calibration or equity. Our contribution is a structured, BI-RADS-anchored evaluation that integrates discrimination, calibration, workloads, decision curves, and subgroup equity in a single framework that can be applied to any AI model.
+This framework contrasts with prior AI evaluation work, such as McKinney et al. [3], which primarily relied on ROC-based evaluation of a strong AI system with limited calibration and workload-anchored analysis, or Yala et al. [13], which explored triage strategies but not BI-RADS anchored calibration or equity. Our contribution is a structured, BI-RADS-anchored evaluation that integrates discrimination, calibration, workloads, decision curves, and subgroup equity in a single framework that can be applied to any AI model.
 
-Calibration results merit special attention. An AI model with excellent global metrics showed a Brier score worse than predicting prevalence, an intercept of -1.921, and an AUC of just 0.499 within BI-RADS 3. This indicates the model is essentially guessing randomly among "probably benign" cases. BI-RADS 3 is precisely where clinicians most need risk stratification to decide between short-interval follow-up versus biopsy. An uncalibrated model deployed in this context could under- or over-triage patients, undermining safety. Decision curve analysis, which integrates both discrimination and calibration in a single net benefit measure, confirmed that a combined BI-RADS+AI strategy offers the most robust clinical utility across a range of clinically plausible risk thresholds.
+Calibration results merit special attention. An AI model with excellent global metrics showed a Brier score worse than predicting prevalence, an intercept of -1.921, and an AUC of just 0.499 within BI-RADS 3. This means the AI's predicted probabilities are so poorly calibrated that simply predicting the average cancer risk for everyone would be more accurate. At low predicted risk levels, the model systematically overestimates cancer probability, potentially leading to unnecessary recalls. BI-RADS 3 is precisely where clinicians most need risk stratification to decide between short-interval follow-up versus biopsy; e.g., recommending biopsy for low-risk BI-RADS 3 lesions or delaying biopsy for high-risk cases. An uncalibrated model deployed in this context could under- or over-triage patients, undermining safety. Decision curve analysis, which integrates both discrimination and calibration in a single net benefit measure, confirmed that a combined BI-RADS+AI strategy offers the most robust clinical utility across a range of clinically plausible risk thresholds.
 
 The subgroup analysis revealed substantial performance variation, emphasizing that equity must be a primary endpoint in AI evaluation. The AI model exhibited negative net benefit for women with extremely dense breasts (Density D), highlighting how global metrics can hide harm to specific patient populations. Sensitivity analyses using different calibration assumptions and bootstrap resampling are provided in Appendix E, further supporting the robustness of the combined BI-RADS+AI strategy.
 
@@ -271,9 +271,9 @@ For clinical implementation, a radiology department might use this framework to 
 
 ## 7. Limitations
 
-*   **Simulated Data:** Because publicly available datasets do not yet include both BI-RADS assessments and AI risk scores calibrated for deployment, the dataset used was simulated to match the statistical properties of VinDr-Mammo. While statistically rigorous for demonstrating the framework, the specific numerical outputs apply to the simulated distributions, not actual patient images.
-*   **Lack of prospective workflow data:** We evaluated AI as a standalone risk score, not within a radiologist-AI interaction. The combined BI-RADS+AI strategy assumed simple combination models; real-world interaction effects (e.g., radiologist acceptance, automation bias) are unknown.
-*   **Limited demographic variables:** Race/ethnicity, socioeconomic status, and imaging site characteristics were unavailable, preventing a full equity audit.
+*   **Simulated Data:** The entire study utilizes simulated data. Because publicly available datasets do not yet include both BI-RADS assessments and AI risk scores calibrated for deployment, the dataset used was simulated to match the statistical properties of VinDr-Mammo. While statistically rigorous for demonstrating the framework, the specific numerical outputs apply to the simulated distributions, not actual patient images. Validation on real, multi-institutional clinical data is required before any specific AI model could be deployed using these findings. The current study should be viewed as a framework demonstration rather than a definitive AI evaluation.
+*   **Lack of prospective workflow data:** We evaluated AI as a standalone risk score, not within a radiologist-AI interaction. The combined BI-RADS+AI strategy assumed simple combination models; real-world interaction effects (e.g., radiologist acceptance, automation bias) are unknown. Furthermore, the study lacks a reader study component.
+*   **Limited demographic variables:** Race/ethnicity, socioeconomic status, and imaging site characteristics were unavailable, preventing a full equity audit. This remains an important future direction.
 *   **Small sample sizes:** The small number of women aged ≥70 (2.1%) limits the precision and generalizability of subgroup estimates in older populations. Architectural distortion lesions (n=37) also represent a very small sample, and estimates for this subgroup are exploratory. Wide confidence intervals reflect these small sample sizes.
 
 ---
@@ -308,7 +308,7 @@ The authors declare no competing interests.
 This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
 
 **Authors' contributions**
-B.S.A. conceptualized the study, developed the evaluation framework, performed the formal analysis, generated all figures and tables, and wrote and revised the manuscript. 
+**Conceptualization:** B.S.A.; **Methodology:** B.S.A.; **Software:** B.S.A.; **Validation:** B.S.A.; **Formal Analysis:** B.S.A.; **Investigation:** B.S.A.; **Resources:** B.S.A.; **Data Curation:** B.S.A.; **Writing - Original Draft:** B.S.A.; **Writing - Review & Editing:** B.S.A.; **Visualization:** B.S.A.; **Supervision:** B.S.A.; **Project Administration:** B.S.A. All authors read and approved the final manuscript.
 
 **Acknowledgements**
 The authors used AI-assisted writing tools for text drafting and language editing. All content was reviewed and verified by the authors, who are responsible for the final manuscript.
@@ -325,18 +325,20 @@ The authors used AI-assisted writing tools for text drafting and language editin
 
 [4] Rodriguez-Ruiz A, Lång K, Gubern-Merida A, et al. Stand-alone artificial intelligence for breast cancer detection in mammography: comparison with 101 radiologists. J Natl Cancer Inst. 2019;111(9):916-922. doi:10.1093/jnci/djy222.
 
-[5] Park SH, Han K, Jang HY, et al. Methods for clinical evaluation of artificial intelligence algorithms for medical diagnosis. Radiology. 2023;306(1):20-31. doi:10.1148/radiol.220182.
+[5] Lotter W, Diab AR, Haslam B, et al. Robust breast cancer detection in mammography and digital breast tomosynthesis: a deep learning approach. Nat Med. 2021;27(2):244-249. doi:10.1038/s41591-020-01174-9.
 
-[6] Collins GS, Dhiman P, Andaur Navarro CL, et al. Protocol for development of a reporting guideline for clinical prediction model research using AI (TRIPOD+AI). BMJ Open. 2021;11(7):e048008. doi:10.1136/bmjopen-2020-048008.
+[6] Park SH, Han K, Jang HY, et al. Methods for clinical evaluation of artificial intelligence algorithms for medical diagnosis. Radiology. 2023;306(1):20-31. doi:10.1148/radiol.220182.
 
-[7] McKee BJ, Regis SM, Block CC, et al. Lung-RADS: ACR's new lung cancer screening reporting and data system. J Am Coll Radiol. 2015;12(3):318-319. doi:10.1016/j.jacr.2014.11.002.
+[7] Collins GS, Dhiman P, Andaur Navarro CL, et al. Protocol for development of a reporting guideline for clinical prediction model research using AI (TRIPOD+AI). BMJ Open. 2021;11(7):e048008. doi:10.1136/bmjopen-2020-048008.
 
-[8] Nguyen HQ, Lam K, Le LT, et al. VinDr-Mammo: A large-scale benchmark dataset for computer-aided diagnosis in full-field digital mammography. Sci Data. 2023;10(1):11. doi:10.1038/s41597-022-01917-6.
+[8] McKee BJ, Regis SM, Block CC, et al. Lung-RADS: ACR's new lung cancer screening reporting and data system. J Am Coll Radiol. 2015;12(3):318-319. doi:10.1016/j.jacr.2014.11.002.
 
-[9] Vickers AJ, Elkin EB. Decision curve analysis: a novel method for evaluating prediction models. Med Decis Making. 2006;26(6):565-574. doi:10.1177/0272989X06295361.
+[9] Nguyen HQ, Lam K, Le LT, et al. VinDr-Mammo: A large-scale benchmark dataset for computer-aided diagnosis in full-field digital mammography. Sci Data. 2023;10(1):11. doi:10.1038/s41597-022-01917-6.
 
-[10] Vickers AJ, van Calster B, Steyerberg EW. A simple, step-by-step guide to interpreting decision curve analysis. Diagn Progn Res. 2019;3:18. doi:10.1186/s41512-019-0064-7.
+[10] Vickers AJ, Elkin EB. Decision curve analysis: a novel method for evaluating prediction models. Med Decis Making. 2006;26(6):565-574. doi:10.1177/0272989X06295361.
 
-[11] Steyerberg EW, Vickers AJ, Cook NR, et al. Assessing the performance of prediction models: a framework for traditional and novel measures. Epidemiology. 2010;21(1):128-138. doi:10.1097/EDE.0b013e3181c30fb2.
+[11] Vickers AJ, van Calster B, Steyerberg EW. A simple, step-by-step guide to interpreting decision curve analysis. Diagn Progn Res. 2019;3:18. doi:10.1186/s41512-019-0064-7.
 
-[12] Yala A, Schuster T, Miles R, Barzilay R, Lehman C. A deep learning model to triage screening mammograms: a simulation study. Radiology. 2019;293(1):38-46. doi:10.1148/radiol.2019182908.
+[12] Steyerberg EW, Vickers AJ, Cook NR, et al. Assessing the performance of prediction models: a framework for traditional and novel measures. Epidemiology. 2010;21(1):128-138. doi:10.1097/EDE.0b013e3181c30fb2.
+
+[13] Yala A, Schuster T, Miles R, Barzilay R, Lehman C. A deep learning model to triage screening mammograms: a simulation study. Radiology. 2019;293(1):38-46. doi:10.1148/radiol.2019182908.
