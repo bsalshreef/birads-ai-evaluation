@@ -2,7 +2,7 @@
 
 **Author:** Bandar Saad Alshreef, Ph.D.
 **Affiliation:** Shaqra University
-**Corresponding author:** bsalshreef@su.edu.sa, ORCID: https://orcid.org/0000-0000-0000-0000
+**Corresponding author:** bsalshreef@su.edu.sa, ORCID: https://orcid.org/0009-0009-9284-4262
 **Target journal:** *European Radiology Experimental*
 **Manuscript type:** Original Research
 
@@ -14,9 +14,9 @@
 
 **Running title:** BI-RADS-Anchored Clinical Utility Assessment of Mammography AI
 
-**Author list:** Bandar Saad Alshreef
+**Author list:** Bandar Saad Alshreef ¹
 
-**Affiliations:** Shaqra University
+**Affiliations:** ¹ Department of Medical Laboratory Sciences, College of Applied Medical Sciences, Shaqra University, Shaqra, Saudi Arabia
 
 **Word count:** 4,200
 **Number of tables:** 8
@@ -292,26 +292,26 @@ Evaluating AI for breast cancer screening at BI-RADS anchored decision points pr
 
 ## Declarations
 
-**Ethics approval and consent to participate**
-This study used fully simulated data and did not involve human participants or patient-identifiable information; institutional review board approval and informed consent were therefore not required.
+**Institutional Review Board Statement**
+Not applicable. This study utilized a fully simulated dataset and did not involve the collection or analysis of new human-subject, animal, or patient-level data.
 
-**Consent for publication**
-Informed consent was not required for the use of simulated data.
+**Informed Consent Statement**
+Not applicable.
 
-**Availability of data and materials**
-All simulation code and example datasets used to generate the results are available at https://github.com/bsalshreef/birads-ai-evaluation (DOI: 10.5281/zenodo.20821730, archived version at time of publication). A completed TRIPOD+AI checklist is provided in the Supplementary Material.
+**Data Availability Statement**
+No new datasets were generated or analyzed for this study. All simulation code and analysis scripts are available at https://github.com/bsalshreef/birads-ai-evaluation (DOI: 10.5281/zenodo.20821730, archived version at time of publication). A completed TRIPOD+AI checklist is provided in the Supplementary Material.
 
 **Competing interests**
 The authors declare no competing interests.
 
 **Funding**
-This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
+This research received no external funding.
 
 **Authors' contributions**
-**Conceptualization:** B.S.A.; **Methodology:** B.S.A.; **Software:** B.S.A.; **Validation:** B.S.A.; **Formal Analysis:** B.S.A.; **Investigation:** B.S.A.; **Resources:** B.S.A.; **Data Curation:** B.S.A.; **Writing - Original Draft:** B.S.A.; **Writing - Review & Editing:** B.S.A.; **Visualization:** B.S.A.; **Supervision:** B.S.A.; **Project Administration:** B.S.A. All authors read and approved the final manuscript.
+Conceptualization, B.S.A.; methodology, B.S.A.; investigation, B.S.A.; resources, B.S.A.; writing—original draft preparation, B.S.A.; writing—review and editing, B.S.A.; visualization, B.S.A.; project administration, B.S.A. The author has read and agreed to the published version of the manuscript.
 
-**Acknowledgements**
-The authors used AI-assisted writing tools for text drafting and language editing. All content was reviewed and verified by the authors, who are responsible for the final manuscript.
+**Acknowledgments**
+The author would like to thank the Deanship of Scientific Research at Shaqra University for supporting this work. The author used AI-assisted writing tools for text drafting and language editing. All content was reviewed and verified by the author, who is responsible for the final manuscript.
 
 ---
 
