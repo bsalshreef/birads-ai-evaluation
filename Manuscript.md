@@ -2,7 +2,7 @@
 
 **Author:** Bandar Saad Alshreef, Ph.D.
 **Affiliation:** Shaqra University
-**Corresponding author:** [Insert Email], ORCID: [Insert ORCID]
+**Corresponding author:** bsalshreef@su.edu.sa, ORCID: https://orcid.org/[Insert ORCID]
 **Target journal:** European Radiology Experimental
 **Manuscript type:** Original Research
 
@@ -53,7 +53,7 @@ In this study, we develop and apply a comprehensive BI-RADS anchored clinical ut
 
 ### 4.1 Study design and data simulation
 
-This retrospective cohort study utilized a dataset simulated to match the exact statistical properties of the publicly available VinDr-Mammo dataset, a full-field digital mammography (FFDM) collection containing 5,000 four-view examinations [8]. The simulation accurately reproduced the published BI-RADS distribution, breast density categories, age demographics, lesion types (mass, calcification, etc.), and biopsy-confirmed malignancy outcomes (Supplementary Table 1 compares simulated cohort characteristics to VinDr-Mammo, demonstrating close alignment). The simulated dataset, based on VinDr-Mammo's distributions, provides the BI-RADS annotations needed for the framework. Detailed simulation methodology is provided in Appendix A. Preprocessing scripts and evaluation code are hosted on the author’s repository to ensure full reproducibility ([Insert GitHub URL]).
+This retrospective cohort study utilized a dataset simulated to match the exact statistical properties of the publicly available VinDr-Mammo dataset, a full-field digital mammography (FFDM) collection containing 5,000 four-view examinations [8]. The simulation accurately reproduced the published BI-RADS distribution, breast density categories, age demographics, lesion types (mass, calcification, etc.), and biopsy-confirmed malignancy outcomes (Supplementary Table 1 compares simulated cohort characteristics to VinDr-Mammo, demonstrating close alignment). The simulated dataset, based on VinDr-Mammo's distributions, provides the BI-RADS annotations needed for the framework. Detailed simulation methodology is provided in Appendix A. Preprocessing scripts and evaluation code are hosted on the author’s repository to ensure full reproducibility (https://github.com/bsalshreef/birads-ai-evaluation).
 
 ### 4.2 Inclusion and exclusion criteria
 
@@ -299,16 +299,16 @@ This study used fully simulated data and did not involve human participants or p
 Informed consent was not required for the use of simulated data.
 
 **Availability of data and materials**
-All simulation code and example datasets used to generate the results are available at [Insert GitHub URL]. A completed TRIPOD+AI checklist is provided in the Supplementary Material.
+All simulation code and example datasets used to generate the results are available at https://github.com/bsalshreef/birads-ai-evaluation (DOI: 10.5281/zenodo.20821730, archived version at time of publication). A completed TRIPOD+AI checklist is provided in the Supplementary Material.
 
 **Competing interests**
 The authors declare no competing interests.
 
 **Funding**
-[Insert Funding Information]
+This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
 
 **Authors' contributions**
-[Insert Author Initials] conceptualized the study, developed the methodology, performed the formal analysis, and wrote the manuscript. 
+B.S.A. conceptualized the study, developed the evaluation framework, performed the formal analysis, generated all figures and tables, and wrote and revised the manuscript. 
 
 **Acknowledgements**
 The authors used AI-assisted writing tools for text drafting and language editing. All content was reviewed and verified by the authors, who are responsible for the final manuscript.
